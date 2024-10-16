@@ -32,7 +32,6 @@ class ProdukController extends Controller
     public function store(Request $request)
     {
         $data = [
-            'id_konsinyasi' => $request->input('id_konsinyasi'),
             'produk' => $request->input('produk'),
             'harga' => $request->input('harga'),
             'stok' => $request->input('stok')
@@ -65,7 +64,6 @@ class ProdukController extends Controller
     public function update(Request $request, string $id)
     {
         $data = [
-            'id_konsinyasi' => $request->input('id_konsinyasi'),
             'produk' => $request->input('produk'),
             'harga' => $request->input('harga'),
             'stok' => $request->input('stok')

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Konsinyasi;
 use App\Models\KonsinyasiProduk;
+use App\Models\Produk;
 use Illuminate\Http\Request;
 
 class KonsinyasiProdukController extends Controller
@@ -13,8 +15,12 @@ class KonsinyasiProdukController extends Controller
     public function index()
     {
         $konsinyasiProduk = KonsinyasiProduk::paginate(10);
+        $konsinyasi = Konsinyasi::all();
+        $produk = Produk::all();
         return view('page.konsinyasiProduk.index')->with([
-            'konsinyasiProduk' => $konsinyasiProduk
+            'konsinyasiProduk' => $konsinyasiProduk,
+            'konsinyasi' => $konsinyasi,
+            'produk' => $produk
         ]);
     }
 
@@ -38,6 +44,17 @@ class KonsinyasiProdukController extends Controller
             'tgl_konsinyasi' => $request->input('tgl_konsinyasi'),
         ];
 
+        // $id_produk = $request->input('id_produk');
+        // $stokKonsinyasiProduk = $request->input('stok');
+        // $produk = Produk::findOrFail($id_produk);
+        // $stok = $produk->stok;
+        // $addStok = $stok + $stokKonsinyasiProduk;
+
+        // $addStokProduk = [
+        //     'stok' => $addStok
+        // ];
+
+        // $produk->update($addStokProduk);
         KonsinyasiProduk::create($konsinyasiProduk);
 
         return back()->with('message_create', 'Data ditambahkan');
@@ -66,7 +83,9 @@ class KonsinyasiProdukController extends Controller
     {
         $data = [
             'id_konsinyasi' => $request->input('id_konsinyasi'),
+            // 'id_konsinyasi' => $request->input('id_konsinyasi_edit'),
             'id_produk' => $request->input('id_produk'),
+            // 'id_produk' => $request->input('id_produk_edit'),
             'stok' => $request->input('stok'),
             'tgl_konsinyasi' => $request->input('tgl_konsinyasi'),
         ];
@@ -82,6 +101,7 @@ class KonsinyasiProdukController extends Controller
      */
     public function destroy(string $id)
     {
+
         $konsinyasiProduk = KonsinyasiProduk::findOrFail($id);
         $konsinyasiProduk->delete();
 
