@@ -69,7 +69,7 @@
                                             NO
                                         </th>
                                         <th scope="col" class="px-6 py-3">
-                                            ID KONSINYASI
+                                            KONSINYASI
                                         </th>
                                         <th scope="col" class="px-6 py-3">
                                             ID PRODUK
@@ -97,12 +97,10 @@
                                                 {{ $konsinyasiProduk->perPage() * ($konsinyasiProduk->currentPage() - 1) + $key + 1 }}
                                             </th>
                                             <td class="px-6 py-4">
-                                                {{ $k->id_konsinyasi }}
-                                                {{-- {{ $k->konsinyasi->konsinyasi }} --}}
+                                                {{ $k->konsinyasi->konsinyasi }}
                                             </td>
                                             <td class="px-6 py-4">
-                                                {{ $k->id_produk }}
-                                                {{-- {{ $k->produk->produk }} --}}
+                                                {{ $k->produk->produk }}
                                             </td>
                                             <td class="px-6 py-4">
                                                 {{ $k->stok }}
@@ -155,32 +153,25 @@
                 <form method="POST" id="formSourceModal">
                     @csrf
                     <div class="flex flex-col  p-4 space-y-6">
-                        <div class="">
-                            <label for="text" class="block mb-2 text-sm font-medium text-gray-900">Id
-                                Konsinyasi</label>
-                            <input type="text" id="id_konsinyasi" name="id_konsinyasi"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Masukan Konsinyasi disini...">
-                        </div>
-                        {{-- <div class="">
+                        <div class="mb-5">
                             <label for="id_konsinyasi"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Konsinyasi</label>
                             <select class="js-example-placeholder-single js-states form-control w-full m-6"
-                                id="id_konsinyasi" name="id_konsinyasi_edit" data-placeholder="Pilih Konsinyasi">
+                                name="id_konsinyasi_edit" id="id_konsinyasi" data-placeholder="Pilih Konsinyasi">
                                 <option value="">Pilih...</option>
                                 @foreach ($konsinyasi as $k)
-                                    <option value="{{ $k->id }}">{{ $k->konsinyasi }}</option>
+                                    <option value="{{ $k->id }}">{{$k->konsinyasi}}</option>
                                 @endforeach
                             </select>
-                        </div> --}}
-                        <div class="">
+                        </div>
+                        {{-- <div class="">
                             <label for="text" class="block mb-2 text-sm font-medium text-gray-900">Id
                                 Produk</label>
                             <input type="text" id="id_produk" name="id_produk"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 placeholder="Masukan Produk disini...">
-                        </div>
-                        {{-- <div class="mb-5">
+                        </div> --}}
+                        <div class="mb-5">
                             <label for="id_produk"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Produk</label>
                             <select class="js-example-placeholder-single js-states form-control w-full m-6"
@@ -190,7 +181,7 @@
                                     <option value="{{ $k->id }}">{{ $k->produk }}</option>
                                 @endforeach
                             </select>
-                        </div> --}}
+                        </div>
                         <div class="">
                             <label for="text" class="block mb-2 text-sm font-medium text-gray-900">Stok</label>
                             <input type="number" id="stok" name="stok"
@@ -230,16 +221,16 @@
         let status = document.getElementById(modalTarget);
         document.getElementById('title_source').innerText = `UPDATE KONSINYASI PRODUK ${id_konsinyasi}`;
 
-        document.getElementById('id_konsinyasi').value = id_konsinyasi;
-        document.getElementById('id_produk').value = id_produk;
+        // document.getElementById('id_konsinyasi').value = id_konsinyasi;
+        // document.getElementById('id_produk').value = id_produk;
 
-        // let event = new Event('change');
-        // document.querySelector('[name="id_produk_edit"]').value = id_produk;
-        // document.querySelector('[name="id_produk_edit"]').dispatchEvent(event);
+        let event = new Event('change');
 
-        // document.querySelector('[name="id_konsinyasi_edit"]').value = id_konsinyasi;
-        // document.querySelector('[name="id_konsinyasi_edit"]').dispatchEvent(event);
+        document.querySelector('[name="id_konsinyasi_edit"]').value = id_konsinyasi;
+        document.querySelector('[name="id_konsinyasi_edit"]').dispatchEvent(event);
 
+        document.querySelector('[name="id_produk_edit"]').value = id_produk;
+        document.querySelector('[name="id_produk_edit"]').dispatchEvent(event);
         document.getElementById('stok').value = stok;
         document.getElementById('tgl_konsinyasi').value = tgl_konsinyasi;
 
