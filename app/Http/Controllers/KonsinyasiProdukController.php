@@ -44,17 +44,20 @@ class KonsinyasiProdukController extends Controller
             'tgl_konsinyasi' => $request->input('tgl_konsinyasi'),
         ];
 
-        // $id_produk = $request->input('id_produk');
-        // $stokKonsinyasiProduk = $request->input('stok');
-        // $produk = Produk::findOrFail($id_produk);
-        // $stok = $produk->stok;
-        // $addStok = $stok + $stokKonsinyasiProduk;
+        $id_produk = $request->input('id_produk');
+        $stokKonsinyasi = $request->input('stok');
 
-        // $addStokProduk = [
-        //     'stok' => $addStok
-        // ];
+        $produk = Produk::where('id', $id_produk)->first();
+        $stokProduk = $produk->stok;
+        // dd($stokProduk);
 
-        // $produk->update($addStokProduk);
+        $dataProduk = [
+            'stok' => $stokProduk + $stokKonsinyasi
+        ];
+
+        $updateProduk = Produk::findOrFail($id_produk);
+        $updateProduk->update($dataProduk);
+
         KonsinyasiProduk::create($konsinyasiProduk);
 
         return back()->with('message_create', 'Data ditambahkan');
@@ -83,12 +86,34 @@ class KonsinyasiProdukController extends Controller
     {
         $data = [
             'id_konsinyasi' => $request->input('id_konsinyasi'),
-            // 'id_konsinyasi' => $request->input('id_konsinyasi_edit'),
             'id_produk' => $request->input('id_produk'),
-            // 'id_produk' => $request->input('id_produk_edit'),
             'stok' => $request->input('stok'),
             'tgl_konsinyasi' => $request->input('tgl_konsinyasi'),
         ];
+
+        $id_produk = $request->input('id_produk');
+        $stokKonsinyasiP = $request->input('stok');
+
+        $produkKonsinyasi = KonsinyasiProduk::where('id', $id)->first();
+        $stokLama = $produkKonsinyasi->stok;
+
+        if ($stokLama < $stokKonsinyasiP) {
+            $stokUpdate = $stokKonsinyasiP + $stokLama;
+        } else {
+            $stokUpdate = $stokLama - $stokKonsinyasiP;
+        }
+
+        // dd($stokUpdate);
+
+
+        $produk = Produk::where('id', $id_produk)->first();
+        $stokProduk = $produk->stok;
+        $dataProduk = [
+            'stok' => $stokProduk - $stokKonsinyasiP
+        ];
+
+        $updateProduk = Produk::findOrFail($id_produk);
+        $updateProduk->update($dataProduk);
 
         $konsinyasiProduk = KonsinyasiProduk::findOrFail($id);
         $konsinyasiProduk->update($data);
@@ -101,6 +126,18 @@ class KonsinyasiProdukController extends Controller
      */
     public function destroy(string $id)
     {
+        $dataKonsinyasiP = KonsinyasiProduk::where('id', $id)->first();
+        $id_produk = $dataKonsinyasiP->id_produk;
+        $stokKonsinyasiP = $dataKonsinyasiP->stok;
+
+        $produk = Produk::where('id', $id_produk)->first();
+        $stokProduk = $produk->stok;
+        $dataProduk = [
+            'stok' => $stokProduk - $stokKonsinyasiP
+        ];
+
+        $updateProduk = Produk::findOrFail($id_produk);
+        $updateProduk->update($dataProduk);
 
         $konsinyasiProduk = KonsinyasiProduk::findOrFail($id);
         $konsinyasiProduk->delete();
