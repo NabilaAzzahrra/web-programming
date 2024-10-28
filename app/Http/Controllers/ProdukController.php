@@ -32,7 +32,10 @@ class ProdukController extends Controller
     public function store(Request $request)
     {
         $data = [
+<<<<<<< HEAD
             
+=======
+>>>>>>> 4ccfae710b246ab8aecc969ca6b8d8d3e0b465be
             'produk' => $request->input('produk'),
             'harga' => $request->input('harga'),
             'stok' => $request->input('stok')
@@ -65,7 +68,10 @@ class ProdukController extends Controller
     public function update(Request $request, string $id)
     {
         $data = [
+<<<<<<< HEAD
             
+=======
+>>>>>>> 4ccfae710b246ab8aecc969ca6b8d8d3e0b465be
             'produk' => $request->input('produk'),
             'harga' => $request->input('harga'),
             'stok' => $request->input('stok')
