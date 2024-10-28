@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
+            {{ __('PRODUK') }}
         </h2>
     </x-slot>
 
@@ -19,6 +19,10 @@
                         </div>
                         <form action="{{ route('produk.store') }}" method="post">
                             @csrf
+<<<<<<< HEAD
+                    
+=======
+>>>>>>> 4ccfae710b246ab8aecc969ca6b8d8d3e0b465be
                             <div class="mb-5">
                                 <label for="base-input"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Produk</label>
@@ -88,6 +92,10 @@
                                             <td class="px-6 py-4">
                                                 <button type="button" data-id="{{ $k->id }}"
                                                     data-modal-target="sourceModal"
+<<<<<<< HEAD
+                                                
+=======
+>>>>>>> 4ccfae710b246ab8aecc969ca6b8d8d3e0b465be
                                                     data-produk="{{ $k->produk }}" data-harga="{{ $k->harga }}"
                                                     data-stok="{{ $k->stok }}" onclick="editSourceModal(this)"
                                                     class="bg-amber-500 hover:bg-amber-600 px-3 py-1 rounded-md text-xs text-white">
@@ -127,6 +135,10 @@
                 <form method="POST" id="formSourceModal">
                     @csrf
                     <div class="flex flex-col  p-4 space-y-6">
+<<<<<<< HEAD
+                        
+=======
+>>>>>>> 4ccfae710b246ab8aecc969ca6b8d8d3e0b465be
                         <div class="">
                             <label for="text" class="block mb-2 text-sm font-medium text-gray-900">Produk</label>
                             <input type="text" id="produk" name="produk"
@@ -162,6 +174,10 @@
         const formModal = document.getElementById('formSourceModal');
         const modalTarget = button.dataset.modalTarget;
         const id = button.dataset.id;
+<<<<<<< HEAD
+    
+=======
+>>>>>>> 4ccfae710b246ab8aecc969ca6b8d8d3e0b465be
         const produk = button.dataset.produk;
         const harga = button.dataset.harga;
         const stok = button.dataset.stok;
@@ -170,6 +186,10 @@
         let status = document.getElementById(modalTarget);
         document.getElementById('title_source').innerText = `UPDATE PRODUK ${produk}`;
 
+<<<<<<< HEAD
+        
+=======
+>>>>>>> 4ccfae710b246ab8aecc969ca6b8d8d3e0b465be
         document.getElementById('produk').value = produk;
         document.getElementById('harga').value = harga;
         document.getElementById('stok').value = stok;

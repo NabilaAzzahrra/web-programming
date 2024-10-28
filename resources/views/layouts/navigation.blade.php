@@ -53,7 +53,11 @@
                                     {{ __('Konsinyasi') }}
                                 </x-dropdown-link>
 
+<<<<<<< HEAD
+                                <x-dropdown-link :href="route('konsinyasi_pro.index')">
+=======
                                 <x-dropdown-link :href="route('konsinyasiProduk.index')">
+>>>>>>> 4ccfae710b246ab8aecc969ca6b8d8d3e0b465be
                                     {{ __('Konsinyasi Produk') }}
                                 </x-dropdown-link>
                             </x-slot>
