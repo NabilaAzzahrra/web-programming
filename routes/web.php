@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\konsinyasi_proController;
 use App\Http\Controllers\KonsinyasiController;
 use App\Http\Controllers\KonsumenController;
 use App\Http\Controllers\ProdukController;
@@ -15,6 +16,7 @@ Route::resource('konsumen', KonsumenController::class)->middleware('auth');
 Route::resource('supplier', SupplierController::class)->middleware('auth');
 Route::resource('produk', ProdukController::class)->middleware('auth');
 Route::resource('konsinyasi', KonsinyasiController::class)->middleware('auth');
+Route::resource('konsinyasi_pro', konsinyasi_proController::class)->middleware('auth');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

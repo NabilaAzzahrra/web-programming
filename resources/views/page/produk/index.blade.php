@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
+            {{ __('PRODUK') }}
         </h2>
     </x-slot>
 
@@ -19,13 +19,7 @@
                         </div>
                         <form action="{{ route('produk.store') }}" method="post">
                             @csrf
-                            <div class="mb-5">
-                                <label for="base-input"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Id
-                                    Konsinyasi</label>
-                                <input name="id_konsinyasi" type="text" id="base-input"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                            </div>
+                    
                             <div class="mb-5">
                                 <label for="base-input"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Produk</label>
@@ -59,9 +53,6 @@
                                             NO
                                         </th>
                                         <th scope="col" class="px-6 py-3">
-                                            ID KONSINYASI
-                                        </th>
-                                        <th scope="col" class="px-6 py-3">
                                             PRODUK
                                         </th>
                                         <th scope="col" class="px-6 py-3">
@@ -87,9 +78,6 @@
                                                 {{ $produk->perPage() * ($produk->currentPage() - 1) + $key + 1 }}
                                             </th>
                                             <td class="px-6 py-4">
-                                                {{ $k->id_konsinyasi }}
-                                            </td>
-                                            <td class="px-6 py-4">
                                                 {{ $k->produk }}
                                             </td>
                                             <td class="px-6 py-4">
@@ -101,7 +89,7 @@
                                             <td class="px-6 py-4">
                                                 <button type="button" data-id="{{ $k->id }}"
                                                     data-modal-target="sourceModal"
-                                                    data-id_konsinyasi="{{ $k->id_konsinyasi }}"
+                                                
                                                     data-produk="{{ $k->produk }}" data-harga="{{ $k->harga }}"
                                                     data-stok="{{ $k->stok }}" onclick="editSourceModal(this)"
                                                     class="bg-amber-500 hover:bg-amber-600 px-3 py-1 rounded-md text-xs text-white">
@@ -141,13 +129,7 @@
                 <form method="POST" id="formSourceModal">
                     @csrf
                     <div class="flex flex-col  p-4 space-y-6">
-                        <div class="">
-                            <label for="text" class="block mb-2 text-sm font-medium text-gray-900">Id
-                                Konsinyasi</label>
-                            <input type="text" id="id_konsinyasi" name="id_konsinyasi"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Masukan kelas disini...">
-                        </div>
+                        
                         <div class="">
                             <label for="text" class="block mb-2 text-sm font-medium text-gray-900">Produk</label>
                             <input type="text" id="produk" name="produk"
@@ -183,7 +165,7 @@
         const formModal = document.getElementById('formSourceModal');
         const modalTarget = button.dataset.modalTarget;
         const id = button.dataset.id;
-        const id_konsinyasi = button.dataset.id_konsinyasi;
+    
         const produk = button.dataset.produk;
         const harga = button.dataset.harga;
         const stok = button.dataset.stok;
@@ -192,7 +174,7 @@
         let status = document.getElementById(modalTarget);
         document.getElementById('title_source').innerText = `UPDATE PRODUK ${produk}`;
 
-        document.getElementById('id_konsinyasi').value = id_konsinyasi;
+        
         document.getElementById('produk').value = produk;
         document.getElementById('harga').value = harga;
         document.getElementById('stok').value = stok;
