@@ -85,31 +85,28 @@ class KonsinyasiProdukController extends Controller
     public function update(Request $request, string $id)
     {
         $data = [
-            'id_konsinyasi' => $request->input('id_konsinyasi'),
-            'id_produk' => $request->input('id_produk'),
+            'id_konsinyasi' => $request->input('id_konsinyasi_edit'),
+            'id_produk' => $request->input('id_produk_edit'),
             'stok' => $request->input('stok'),
             'tgl_konsinyasi' => $request->input('tgl_konsinyasi'),
         ];
 
-        $id_produk = $request->input('id_produk');
+        $id_produk = $request->input('id_produk_edit');
         $stokKonsinyasiP = $request->input('stok');
 
         $produkKonsinyasi = KonsinyasiProduk::where('id', $id)->first();
         $stokLama = $produkKonsinyasi->stok;
 
         if ($stokLama < $stokKonsinyasiP) {
-            $stokUpdate = $stokKonsinyasiP + $stokLama;
-        } else {
-            $stokUpdate = $stokLama - $stokKonsinyasiP;
+            $tambahStok = $stokKonsinyasiP - $stokLama;
+            $stokUpdate = $stokLama + $tambahStok;
+        }else{
+            $kurangiStok = $stokLama - $stokKonsinyasiP;
+            $stokUpdate = $stokLama - $kurangiStok;
         }
 
-        // dd($stokUpdate);
-
-
-        $produk = Produk::where('id', $id_produk)->first();
-        $stokProduk = $produk->stok;
         $dataProduk = [
-            'stok' => $stokProduk - $stokKonsinyasiP
+            'stok' => $stokUpdate
         ];
 
         $updateProduk = Produk::findOrFail($id_produk);
