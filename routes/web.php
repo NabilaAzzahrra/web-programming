@@ -3,6 +3,7 @@
 use App\Http\Controllers\KonsinyasiController;
 use App\Http\Controllers\KonsinyasiProdukController;
 use App\Http\Controllers\KonsumenController;
+use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SupplierController;
@@ -17,6 +18,7 @@ Route::resource('supplier', SupplierController::class)->middleware('auth');
 Route::resource('produk', ProdukController::class)->middleware('auth');
 Route::resource('konsinyasi', KonsinyasiController::class)->middleware('auth');
 Route::resource('konsinyasiProduk', KonsinyasiProdukController::class)->middleware('auth');
+Route::resource('penjualan', PenjualanController::class)->middleware('auth');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
